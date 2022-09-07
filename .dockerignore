@@ -8,3 +8,6 @@
 .readthedocs.yml
 .travis.yml
 venv
+.vrenv
+.ipython
+.vscode

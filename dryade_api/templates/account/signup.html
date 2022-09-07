@@ -2,6 +2,7 @@
 
 {% load i18n %}
 {% load crispy_forms_tags %}
+{% load socialaccount %}
 
 {% block head_title %}{% translate "Signup" %}{% endblock %}
 
@@ -9,6 +10,19 @@
 <h1>{% translate "Sign Up" %}</h1>
 
 <p>{% blocktranslate %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.{% endblocktranslate %}</p>
+
+<button class="btn btn-outline-info">
+  <a href="{% provider_login_url 'google'%}?next=/">
+      <i class="fab fa-google"></i>
+      Login with Google
+  </a>
+</button>
+<button class="btn btn-outline-info">
+  <a href="{% provider_login_url 'github'%}?next=/">
+      <i class="fab fa-google"></i>
+      Login with Github
+  </a>
+</button>
 
 <form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
   {% csrf_token %}
