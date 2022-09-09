@@ -21,4 +21,11 @@ DRYADE API
     alias dryade_coverage="docker-compose -f local.yml run --rm django coverage run -m pytest"
     alias dryade_coverage_report="docker-compose -f local.yml run --rm django coverage report"
     alias dryade_coverage_html="docker-compose -f local.yml run --rm django coverage html"
+    alias dryade_shell_plus="docker-compose -f local.yml run --rm django python manage.py shell_plus"
+```
+
+Run this commande after Migrations
+
+``` bash
+    sudo chmod -R 777 dryade_api/orders
 ```

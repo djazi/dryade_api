@@ -7,8 +7,13 @@ app_name = "orders"
 
 
 urlpatterns = [
+    # CRUD API for orders
     path("list/", views.OrderList.as_view()),
-    path("detail/<int:pk>/", views.OrderDetail.as_view()),
+    path("create/", views.OrderCreate.as_view()),
+    path("udate/<int:pk>/", views.OrderUpdate.as_view()),
+    path("retreive/<int:pk>/", views.OrderRetrieve.as_view()),
+    path("destroy/<int:pk>/", views.OrderDestroy.as_view()),
+    # Bulk CRUD APIS for orders
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)
