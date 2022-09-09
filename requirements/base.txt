@@ -26,3 +26,4 @@ django-cors-headers==3.13.0 # https://github.com/adamchainz/django-cors-headers
 drf-spectacular==0.23.1  # https://github.com/tfranzel/drf-spectacular
 drf-yasg==1.21.3
 django-rest-auth==0.9.5
+djangorestframework-bulk==0.2.1
