@@ -14,8 +14,12 @@ class Order(BaseModel):
 
     def clean(self):
         """-- call it by 'obj.full_clean() --"""
-        if self.order_name == self.created_by:
+        if self.order_name == self.created_by.username:
             raise ValidationError("The order name cannot be the same as the username ")
+
+    def save(self, *args, **kwargs):
+        self.full_clean()
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return self.order_name
