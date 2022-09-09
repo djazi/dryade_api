@@ -50,6 +50,9 @@ class OrderSteps(BaseModel):
 
         return self.order_end_date <= now.date()
 
+    def is_within(self, x) -> bool:
+        return self.order_start_date <= x <= self.order_end_date
+
     class Meta:
         constraints = [
             models.CheckConstraint(
