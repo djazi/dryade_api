@@ -13,6 +13,8 @@ urlpatterns = [
     path("udate/<int:pk>/", views.OrderUpdate.as_view()),
     path("retreive/<int:pk>/", views.OrderRetrieve.as_view()),
     path("destroy/<int:pk>/", views.OrderDestroy.as_view()),
+    # CRUD APIS for orders steps
+    path("steps/list/", views.OrderStepsList.as_view()),
     # Bulk CRUD APIS for orders
 ]
 

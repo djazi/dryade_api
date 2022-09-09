@@ -3,7 +3,7 @@ from rest_framework.response import Response
 from rest_framework.status import HTTP_204_NO_CONTENT, HTTP_404_NOT_FOUND
 
 from dryade_api.orders.api import serializers
-from dryade_api.orders.models import Order
+from dryade_api.orders.models import Order, OrderSteps
 
 
 class OrderList(generics.ListAPIView):
@@ -47,3 +47,9 @@ class OrderDestroy(generics.DestroyAPIView):
             instance.save()
             status = HTTP_204_NO_CONTENT
         return Response(status=status)
+
+
+class OrderStepsList(generics.ListAPIView):
+
+    queryset = OrderSteps.objects.all().filter(is_deleted=False)
+    serializer_class = serializers.OrderStepListSerializer
