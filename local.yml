@@ -38,6 +38,8 @@ services:
       - dryade_api_local_postgres_data_backups:/backups:z
     env_file:
       - ./.envs/.local/.postgres
+    ports:
+      - "5432:5432"
 
   docs:
     image: dryade_api_local_docs
