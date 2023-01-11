@@ -1,0 +1,54 @@
+{# simplest template for listing the directory #}
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+  <head>
+    <!-- Boostrap 4 CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+
+    <style>
+      ul {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(150px, 450px));
+        grid-column-gap: 20px;
+        grid-row-gap: 10px;
+      }
+      ul > li {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        list-style: none;
+      }
+      ul > li > i {
+        margin-right: 15px;
+        font-size: 18px;
+      }
+      ul > li > a {
+        color: black;
+      }
+    </style>
+  </head>
+<body>
+
+<h1>{{ directory_name }}</h1>
+<ul>
+{% for basename, link_target in directory_directories %}
+  {% if link_target %}
+    <li title="{{basename}}"><i class="bi bi-folder text-primary"></i><a href="{% url 'directory_browse' link_target %}">{{ basename }}/</a></li>
+  {% else %}
+    <li title="{{basename}}"><i class="bi bi-folder text-primary"></i>{{ basename }}/</li>
+  {% endif %}
+{% endfor %}
+{% for basename, link_target in directory_files %}
+  {% if link_target %}
+    <li title="{{basename}}">
+      <i class="bi bi-{% if 'xlsx' in basename %}filetype-xlsx text-success{% elif 'xls' in basename %}filetype-xls text-success{% elif 'csv' in basename %}filetype-csv text-success{% else %}border-all{% endif %}"></i><a href="{% url 'directory_browse' link_target %}">{{ basename }}</a></li>
+  {% else %}
+    <li title="{{basename}}"><i class="bi bi-{% if 'xlsx' in basename %}filetype-xlsx{% elif 'xls' in basename %}filetype-xls{% elif 'csv' in basename %}filetype-csv{% else %}border-all{% endif %}"></i>{{ basename }}</li>
+  {% endif %}
+{% endfor %}
+</ul>
+
+</body>
+</html>
